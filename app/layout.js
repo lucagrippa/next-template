@@ -1,5 +1,8 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { ThemeProvider } from "@/components/theme-provider"
+import { Navigation } from '@/components/navigation'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,7 +14,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="mx-auto max-w-6xl px-2 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+            <Navigation />
+            <main className="px-4 sm:px-18 md:px-24 py-12 w-full">
+              {children}
+            </main>
+          </div>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
