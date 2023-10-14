@@ -1,69 +1,37 @@
 "use client"
 import { useState } from 'react';
-
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+
 import { Menu, X } from 'lucide-react';
+
 
 import { Button } from '@/components/ui/button'
 import { Toggle } from '@/components/ui/toggle'
 import { ModeToggle } from '@/components/mode-toggle'
 import {
     NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuIndicator,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuViewport,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import {
     MobileNavigationMenu,
-    MobileNavigationMenuContent,
-    MobileNavigationMenuIndicator,
     MobileNavigationMenuItem,
     MobileNavigationMenuLink,
     MobileNavigationMenuList,
-    MobileNavigationMenuTrigger,
-    MobileNavigationMenuViewport,
     mobileNavigationMenuTriggerStyle,
 } from "@/components/ui/mobile-navigation-menu"
 
-
-const components = [
-    {
-        title: "Home",
-        href: "/",
-        //   description:
-        //     "A modal dialog that interrupts the user with important content and expects a response.",
-    },
-    {
-        title: "Tracks",
-        href: "/",
-        //   description:
-        //     "For sighted users to preview content available behind a link.",
-    },
-    {
-        title: "Albums",
-        href: "/",
-        //   description:
-        //     "For sighted users to preview content available behind a link.",
-    },
-    {
-        title: "Artists",
-        href: "/",
-        //   description:
-        //     "For sighted users to preview content available behind a link.",
-    },
-]
-
-export function Navigation({ params }) {
+export function Navigation({ routes }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+
+    const pathname = usePathname()
 
     return (
         <div >
@@ -80,19 +48,17 @@ export function Navigation({ params }) {
                     <NavigationMenu className="hidden sm:block">
                         {/* <NavigationMenu className={isOpen ? "w-full" : "hidden sm:block"}> */}
                         <NavigationMenuList className="">
-                            {components.map((component) => (
-                                <NavigationMenuItem className="" key={component.title}>
-                                    <Link className="w-full" href={component.href} legacyBehavior passHref>
+                            {routes.map((route) => (
+                                <NavigationMenuItem className="" key={route.title}>
+                                    <Link className="w-full" href={route.href} legacyBehavior passHref>
                                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                            {component.title}
+                                            {route.title}
                                         </NavigationMenuLink>
                                     </Link>
                                 </NavigationMenuItem>
                             ))}
                         </NavigationMenuList>
                     </NavigationMenu>
-                    {/* <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" /> */}
-                    {/* <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" /> */}
                 </div>
                 <ModeToggle />
             </div>
@@ -100,14 +66,21 @@ export function Navigation({ params }) {
             {/* mobile menu */}
             <MobileNavigationMenu className={isOpen ? "sm:hidden" : "hidden"}>
                 <MobileNavigationMenuList className=" ">
-                    {components.map((component) => (
-                        <MobileNavigationMenuItem className="w-full" key={component.title}>
-                            <Link href={component.href} legacyBehavior passHref>
-                                <MobileNavigationMenuLink className={mobileNavigationMenuTriggerStyle()}>
-                                    {component.title}
+                    {routes.map((route) => (
+                        <MobileNavigationMenuItem className="w-full" key={route.title}>
+                            <Link href={route.href} legacyBehavior passHref>
+                                <MobileNavigationMenuLink
+                                    className={
+                                        route.href === pathname
+                                            ? `${mobileNavigationMenuTriggerStyle()} bg-accent text-accent-foreground`
+                                            : mobileNavigationMenuTriggerStyle()
+                                    }
+                                >
+                                    {route.title}
                                 </MobileNavigationMenuLink>
                             </Link>
                         </MobileNavigationMenuItem>
+
                     ))}
                 </MobileNavigationMenuList>
             </MobileNavigationMenu>

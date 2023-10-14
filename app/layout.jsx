@@ -2,9 +2,38 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navigation } from '@/components/navigation'
+import { Footer } from '@/components/footer'
 
 
 const inter = Inter({ subsets: ['latin'] })
+
+
+const routes = [
+  {
+      title: "Home",
+      href: "/",
+      //   description:
+      //     "A modal dialog that interrupts the user with important content and expects a response.",
+  },
+  {
+      title: "About",
+      href: "/about",
+      //   description:
+      //     "For sighted users to preview content available behind a link.",
+  },
+  {
+      title: "Contact",
+      href: "/contact",
+      //   description:
+      //     "For sighted users to preview content available behind a link.",
+  },
+  {
+      title: "Other",
+      href: "/other",
+      //   description:
+      //     "For sighted users to preview content available behind a link.",
+  },
+]
 
 export const metadata = {
   title: 'Create Next App',
@@ -22,10 +51,11 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           <div className="mx-auto max-w-6xl px-2 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
-            <Navigation />
+            <Navigation routes={routes} />
             <main className="px-4 sm:px-18 md:px-24 py-12 w-full">
               {children}
             </main>
+            <Footer routes={routes} />
           </div>
         </ThemeProvider>
       </body>
