@@ -17,9 +17,9 @@ export function Footer({ routes }) {
     const pathname = usePathname()
 
     return (
-        <footer class="mx-auto max-w-5xl px-2 sm:px-6 lg:px-8 ">
-            <div class="flex justify-between py-8 sm:py-12 border-t-2">
-                <div class="flex space-x-4">
+        <footer className="mx-auto max-w-5xl px-2 sm:px-6 lg:px-8 ">
+            <div className="flex justify-between py-8 sm:py-12 border-t-2">
+                <div className="flex space-x-4">
                 <NavigationMenu className=" ">
                         {/* <NavigationMenu className={isOpen ? "w-full" : "hidden sm:block"}> */}
                         <NavigationMenuList className="">
@@ -38,7 +38,7 @@ export function Footer({ routes }) {
                     </NavigationMenu>
                 </div>
                 <div>
-                    <p class="px-3 py-2 text-sm font-medium text-muted-foreground">Made by Luca Grippa</p>
+                    <p className="px-3 py-2 text-sm font-medium text-muted-foreground">Made by Luca Grippa</p>
                 </div>
             </div>
         </footer>

@@ -49,9 +49,16 @@ export function Navigation({ routes }) {
                         {/* <NavigationMenu className={isOpen ? "w-full" : "hidden sm:block"}> */}
                         <NavigationMenuList className="">
                             {routes.map((route) => (
-                                <NavigationMenuItem className="" key={route.title}>
+                                <NavigationMenuItem className="" key={route.title}
+                                >
                                     <Link className="w-full" href={route.href} legacyBehavior passHref>
-                                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                        <NavigationMenuLink className={navigationMenuTriggerStyle()}
+                                            data-state={
+                                                route.href === pathname
+                                                    ? "open"
+                                                    : "closed"
+                                            }
+                                        >
                                             {route.title}
                                         </NavigationMenuLink>
                                     </Link>
@@ -69,11 +76,11 @@ export function Navigation({ routes }) {
                     {routes.map((route) => (
                         <MobileNavigationMenuItem className="w-full" key={route.title}>
                             <Link href={route.href} legacyBehavior passHref>
-                                <MobileNavigationMenuLink
-                                    className={
+                                <MobileNavigationMenuLink className={mobileNavigationMenuTriggerStyle()}
+                                    data-state={
                                         route.href === pathname
-                                            ? `${mobileNavigationMenuTriggerStyle()} bg-accent text-accent-foreground`
-                                            : mobileNavigationMenuTriggerStyle()
+                                            ? "open"
+                                            : "closed"
                                     }
                                 >
                                     {route.title}
