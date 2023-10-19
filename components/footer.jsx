@@ -11,13 +11,11 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
-
-
 export function Footer({ routes }) {
     const pathname = usePathname()
 
     return (
-        <footer className="mx-auto max-w-5xl px-2 sm:px-6 lg:px-8 ">
+        <footer className="mx-auto py-4 sm:py-8">
             <div className="flex justify-between py-8 sm:py-12 border-t-2">
                 <div className="flex space-x-4">
                 <NavigationMenu className=" ">
