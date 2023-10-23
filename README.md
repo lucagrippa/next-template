@@ -44,6 +44,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Learn More
 
-To learn more about Next.js and Sass, take a look at the following resources:
+To learn more about Next.js and TailwindCSS, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [TailwindCSS Documentation](https://v2.tailwindcss.com/docs) - learn about TailwindCSS
